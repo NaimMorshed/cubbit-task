@@ -11,7 +11,6 @@ const storage = firebase.storage();
 
 const Screen = () => {
     const [file, setFile] = useState([]);
-    const [mongoData, setMongoData] = useState({});
     const [progress, setProgress] = useState(0);
 
     const onDrop = useCallback(acceptedFiles => {
@@ -32,16 +31,28 @@ const Screen = () => {
                         .ref(file[0].name)
                         .getDownloadURL()
                         .then((url: any) => {
-                            setProgress(0);
-                            setMongoData({
-                                name: file[0].name,
-                                size: file[0].size,
-                                mime: file[0].type,
-                                url: url,
+                            setProgress(2);
+                            // send to mongo
+                            fetch('https://git.heroku.com/safe-beach-70812.git/addData', {
+                                method: 'POST',
+                                headers: { 'Content-type': 'application/json' },
+                                body: JSON.stringify([{
+                                    name: file[0].name,
+                                    size: file[0].size,
+                                    mime: file[0].type,
+                                    url: url,
+                                }])
                             })
-                            setFile([]);
+                                .then(res => res.json())
+                                .then(data => {
+                                    setProgress(0);
+                                    alert('File uploaded successfully')
+                                })
+                                .catch(err => {
+                                    setProgress(0);
+                                    alert(err)
+                                })
                         })
-                        // send to mongo
                 }
             )
         } else {
@@ -50,7 +61,7 @@ const Screen = () => {
     }
 
     const download = () => {
-        
+
     }
 
     return (
@@ -84,7 +95,7 @@ const Screen = () => {
                         <button onClick={download} className="decrypt-button">Download and decrypt</button>
                     </div>
                     <br />
-                    {progress === 0 || "File uploading..."}
+                    {progress === 1 ? "File uploading..." : progress === 2 ? "Uploading to MongoDB..." : ""}
                 </form>
             </div>
         </div>
