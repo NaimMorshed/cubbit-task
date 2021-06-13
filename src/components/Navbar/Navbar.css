@@ -1,0 +1,25 @@
+.navbar {
+    background-color: #292929;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.encryption {
+    background-color: #009EFF;
+    padding: 13px 2px;
+}
+
+.encrypted {
+    background-color: #363636;
+    padding: 15px 30px;
+    text-align: center;
+    color: white;
+}
+
+.plain {
+    background-color: #009EFF;
+    padding: 15px 35px;
+    text-align: center;
+    color: white;
+}

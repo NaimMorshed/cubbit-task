@@ -1,0 +1,43 @@
+.below-h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: rgba(255, 255, 255, 0.507);
+}
+
+.yellow-div {
+    background-color: #da8a3fde;
+    padding: 7px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.yellow-div>div {
+    border: 2px dashed #363636;
+    padding: 40px 120px;
+    background-color: #DA8A3F;
+}
+
+.encrypt-button {
+    width: 168px;
+    height: 48px;
+    background: #009EFF;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 12px;
+    border: 0;
+}
+
+.decrypt-button {
+    width: 168px;
+    height: 48px;
+    background: #0065FF;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 12px;
+    border: 0;
+}
