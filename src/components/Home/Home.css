@@ -16,6 +16,7 @@
     border: 2px dashed #363636;
     padding: 40px 120px;
     background-color: #DA8A3F;
+    cursor: pointer;
 }
 
 .encrypt-button {
