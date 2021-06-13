@@ -1,0 +1,25 @@
+.get-file {
+    background: #FFA047;
+    border-radius: 3px;
+    padding: 5px 50px;
+    border: 0;
+}
+
+.custom-input {
+    background-color: #292929;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    padding: 7px 20px;
+    width: 350px;
+}
+
+.custom-input:focus {
+    outline: none;
+}
+
+@media (max-width: 370px) {
+    .custom-input {
+        width: 95vw;
+    }
+}

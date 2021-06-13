@@ -1,23 +1,39 @@
-//Hello world
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone'
 import './Home.css';
 import fileSVG from './files.svg';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import firebaseConfig from '../../firebase.config';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
+import uuid from 'react-uuid'
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 else firebase.app();
 const storage = firebase.storage();
 
 const Screen = () => {
+    const [compData, setCompData] = useContext(UserContext);
+    //const [uid, setUid] = useState(null);
     const [file, setFile] = useState([]);
     const [progress, setProgress] = useState(0);
+    const history = useHistory();
+    const uid = uuid();
 
     const onDrop = useCallback(acceptedFiles => {
         setFile(acceptedFiles);
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+
+    const encrypt = (name: string) => {
+        let nameArray: any[] = name.split("");
+        for (let i: number = 0; i < nameArray.length; i++) {
+            const tempChar: string = nameArray[i];
+            nameArray[i] = String.fromCharCode(tempChar.charCodeAt(0) + nameArray.length);
+        }
+        const finalString: string = nameArray.join("");
+        return finalString;
+    }
 
     const submit = (event: any) => {
         event.preventDefault();
@@ -33,21 +49,29 @@ const Screen = () => {
                         .getDownloadURL()
                         .then((url: any) => {
                             setProgress(2);
-                            // send to mongo
-                            fetch('https://git.heroku.com/safe-beach-70812.git/addData', {
+                            // send to mongoDB
+                            fetch('http://localhost:5000/addData', {
                                 method: 'POST',
                                 headers: { 'Content-type': 'application/json' },
                                 body: JSON.stringify([{
                                     name: file[0].name,
                                     size: file[0].size,
                                     mime: file[0].type,
+                                    uuid: uid,
+                                    encryption: encrypt(file[0].name),
                                     url: url,
                                 }])
                             })
                                 .then(res => res.json())
                                 .then(data => {
                                     setProgress(0);
-                                    alert('File uploaded successfully')
+                                    setCompData({
+                                        name: file[0].name,
+                                        uuid: uid,
+                                        encryption: encrypt(file[0].name),
+                                    })
+                                    history.push("/completion");
+
                                 })
                                 .catch(err => {
                                     setProgress(0);
@@ -59,10 +83,6 @@ const Screen = () => {
         } else {
             alert("Select files first")
         }
-    }
-
-    const download = () => {
-
     }
 
     return (
@@ -93,7 +113,7 @@ const Screen = () => {
                     </div>
                     <div className="button-div center-row">
                         <button type="submit" className="encrypt-button">Encrypt and upload</button>
-                        <button onClick={download} className="decrypt-button">Download and decrypt</button>
+                        <button onClick={() => history.push('/getfile')} className="decrypt-button">Download and decrypt</button>
                     </div>
                     <br />
                     {progress === 1 ? "File uploading..." : progress === 2 ? "Uploading to MongoDB..." : ""}

@@ -42,3 +42,30 @@
     margin: 12px;
     border: 0;
 }
+
+@media (max-width: 404px) {
+    .yellow-div>div {
+        padding: 30px 100px;
+    }
+}
+
+@media (max-width: 310px) {
+    .yellow-div>div {
+        padding: 30px 50px;
+    }
+}
+
+@media (max-width: 400px) {
+    .yellow-div {
+        width: 100vw;
+    }
+    .yellow-div>div {
+        width: 100%;
+    }
+    .button-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
