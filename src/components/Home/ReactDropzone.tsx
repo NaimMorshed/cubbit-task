@@ -2,15 +2,16 @@ import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone'
 
 const ReactDropzone = () => {
-    const onDrop = useCallback(acceptedFiles => {
 
+    const onDrop = useCallback(acceptedFiles => {
+        console.log(acceptedFiles)
     }, [])
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     return (
         <div className="App-header">
-            <div className="bg-info p-5 border" {...getRootProps()}>
+            <div className="bg-info border w-50 center-row" {...getRootProps()}>
                 <input {...getInputProps()} />
                 {
                     isDragActive ?
