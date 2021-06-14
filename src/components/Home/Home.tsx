@@ -50,7 +50,7 @@ const Screen = () => {
                         .then((url: any) => {
                             setProgress(2);
                             // send to mongoDB
-                            fetch('http://localhost:5000/addData', {
+                            fetch('https://safe-beach-70812.herokuapp.com/addData', {
                                 method: 'POST',
                                 headers: { 'Content-type': 'application/json' },
                                 body: JSON.stringify([{

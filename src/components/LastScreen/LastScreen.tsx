@@ -8,7 +8,7 @@ const LastScreen = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/getData')
+        fetch('https://safe-beach-70812.herokuapp.com/getData')
             .then(res => res.json())
             .then(data => {
                 data.map(data => {
