@@ -7,14 +7,14 @@ import 'firebase/storage';
 import firebaseConfig from '../../firebase.config';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
-import uuid from 'react-uuid'
+import uuid from 'react-uuid';
+import {encrypt} from './Encryption';
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 else firebase.app();
 const storage = firebase.storage();
 
 const Screen = () => {
     const [compData, setCompData] = useContext(UserContext);
-    //const [uid, setUid] = useState(null);
     const [file, setFile] = useState([]);
     const [progress, setProgress] = useState(0);
     const history = useHistory();
@@ -24,16 +24,6 @@ const Screen = () => {
         setFile(acceptedFiles);
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-
-    const encrypt = (name: string) => {
-        let nameArray: any[] = name.split("");
-        for (let i: number = 0; i < nameArray.length; i++) {
-            const tempChar: string = nameArray[i];
-            nameArray[i] = String.fromCharCode(tempChar.charCodeAt(0) + nameArray.length);
-        }
-        const finalString: string = nameArray.join("");
-        return finalString;
-    }
 
     const submit = (event: any) => {
         event.preventDefault();
