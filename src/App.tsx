@@ -29,7 +29,7 @@ function App() {
             <GetFile />
           </Route>
 
-          <Route path="/lastscreen">
+          <Route path="/lastscreen/:id">
             <LastScreen />
           </Route>
 

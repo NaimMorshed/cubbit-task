@@ -8,10 +8,12 @@
 .custom-input {
     background-color: #292929;
     color: white;
+    border: 1px solid rgb(65, 65, 65);
     border: 0;
     border-radius: 3px;
     padding: 7px 20px;
-    width: 350px;
+    width: 450px;
+    height: 50px
 }
 
 .custom-input:focus {
@@ -21,5 +23,11 @@
 @media (max-width: 370px) {
     .custom-input {
         width: 95vw;
+    }
+}
+
+@media (max-width: 452px) {
+    .custom-input {
+        width: 90vw;
     }
 }

@@ -1,0 +1,77 @@
+.last-screen-input {
+    background-color: #292929;
+    color: white;
+    border-radius: 3px;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: start;
+}
+
+.parent {
+    width: 600px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.left {
+    width: 28%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.right {
+    width: 68%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #292929;
+    border-radius: 5px;
+    border: 1px solid rgb(65, 65, 65);
+    padding: 0 15px;
+}
+
+.download-input {
+    width: 500px;
+    height: 60px;
+    background-color: #292929;
+    border-radius: 5px;
+    border: 1px solid rgb(65, 65, 65);
+    padding: 0 15px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.download-input:focus {
+    outline: none;
+}
+
+.download-button {
+    background: #FFA047;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 12px 28px;
+    font-size: 22px;
+}
+
+@media (max-width: 630px) {
+    .parent {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 520px) {
+    .download-input {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 296px) {
+    .download-button {
+        width: 90vw;
+    }
+}

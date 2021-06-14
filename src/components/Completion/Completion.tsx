@@ -22,8 +22,8 @@ const Completion = () => {
                     <h4>Your file id:</h4>
                     <span className="data-input">
                         {compData.uuid}
-                        <CopyToClipboard text="NaimMorshed"
-                            onCopy={() => alert("Copied")}>
+                        <CopyToClipboard text={compData.uuid}
+                            onCopy={() => alert("File ID Copied")}>
                             <button>Copy</button>
                         </CopyToClipboard>
                     </span>
@@ -31,8 +31,8 @@ const Completion = () => {
                     <h4>Your encryption id:</h4>
                     <span className="data-input">
                         {compData.encryption}
-                        <CopyToClipboard text="NaimMorshed"
-                            onCopy={() => alert("Copied")}>
+                        <CopyToClipboard text={compData.encryption}
+                            onCopy={() => alert("Encryption Key Copied")}>
                             <button>Copy</button>
                         </CopyToClipboard>
                     </span>

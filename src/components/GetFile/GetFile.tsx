@@ -8,7 +8,7 @@ const GetFile = () => {
 
     const submit = (event: any) => {
         event.preventDefault();
-        history.push('/lastscreen');
+        history.push(`/lastscreen/${idRef.current.value}`);
     }
 
     return (
@@ -18,7 +18,7 @@ const GetFile = () => {
                 <small>
                     <h4>Your file id:</h4>
                     <form onSubmit={submit} className="center-col form-custom">
-                        <input className="m-2 custom-input" type="text" ref={idRef} />
+                        <input className="m-2 custom-input" type="text" ref={idRef} required />
                         <input className="get-file m-2" type="submit" value="Get file" />
                     </form>
                 </small>
