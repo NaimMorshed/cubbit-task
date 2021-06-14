@@ -116,7 +116,7 @@ const Screen = () => {
                         <button onClick={() => history.push('/getfile')} className="decrypt-button">Download and decrypt</button>
                     </div>
                     <br />
-                    {progress === 1 ? "File uploading..." : progress === 2 ? "Uploading to MongoDB..." : ""}
+                    {progress === 1 ? "File uploading..." : progress === 2 ? "Generating encryption key..." : ""}
                 </form>
             </div>
         </div>

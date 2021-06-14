@@ -8,22 +8,18 @@ const LastScreen = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch('https://safe-beach-70812.herokuapp.com/getData')
+        fetch('https://safe-beach-70812.herokuapp.com/getData?uuid='+id)
             .then(res => res.json())
             .then(data => {
-                data.map(data => {
-                    if (data.uuid === id) {
-                        setData(data);
-                    }
-                })
+                setData(data[0]);
             })
-            .catch(err => console.log(err))
+            .catch(err => alert(err))
     }, [])
 
     const submit = (event: any) => {
         event.preventDefault();
         if (inputRef.current.value === data.encryption) {
-            alert("Encryption key matched");
+            alert("Encryption key matched, press ok to navigate");
             // url navigate
             document.getElementById('clicker').click();
         } else alert("Encryption key not matched");
